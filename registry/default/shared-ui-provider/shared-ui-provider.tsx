@@ -1,11 +1,14 @@
 import React, { createContext, useContext, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
-interface SignSiteContextValue {
+interface SignSharedUIContextValue {
   siteOrigin?: string;
+  enableStakeSubMenu: boolean;
 }
 
-const SignSiteContext = createContext<SignSiteContextValue>({});
+const SignSharedUIContext = createContext<SignSharedUIContextValue>({
+  enableStakeSubMenu: false
+});
 
 export function resolveHref(href: string, siteOrigin?: string): string {
   if (!siteOrigin || !href) return href;
@@ -20,13 +23,16 @@ export function resolveHref(href: string, siteOrigin?: string): string {
   return href;
 }
 
-export function useSignSite() {
-  const ctx = useContext(SignSiteContext);
+export function useSignSharedUI() {
+  const ctx = useContext(SignSharedUIContext);
   const resolve = useMemo(
     () => (href: string) => resolveHref(href, ctx.siteOrigin),
     [ctx.siteOrigin]
   );
-  return useMemo(() => ({ siteOrigin: ctx.siteOrigin, resolveHref: resolve }), [ctx.siteOrigin, resolve]);
+  return useMemo(
+    () => ({ siteOrigin: ctx.siteOrigin, resolveHref: resolve, enableStakeSubMenu: ctx.enableStakeSubMenu }),
+    [ctx.siteOrigin, resolve, ctx.enableStakeSubMenu]
+  );
 }
 
 export function isExternalHref(href: string): boolean {
@@ -51,10 +57,11 @@ export const SmartLink: React.FC<
   );
 };
 
-export const SignSiteProvider: React.FC<{
+export const SignSharedUIProvider: React.FC<{
   siteOrigin?: string;
+  enableStakeSubMenu?: boolean;
   children: React.ReactNode;
-}> = ({ siteOrigin, children }) => {
-  const value = useMemo(() => ({ siteOrigin }), [siteOrigin]);
-  return <SignSiteContext.Provider value={value}>{children}</SignSiteContext.Provider>;
+}> = ({ siteOrigin, enableStakeSubMenu = false, children }) => {
+  const value = useMemo(() => ({ siteOrigin, enableStakeSubMenu }), [siteOrigin, enableStakeSubMenu]);
+  return <SignSharedUIContext.Provider value={value}>{children}</SignSharedUIContext.Provider>;
 };

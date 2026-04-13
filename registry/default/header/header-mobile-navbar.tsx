@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { cn } from '../cn';
 import { Container } from '../container';
 import { SignGradientIcon, SignIcon } from '../icons';
-import { SmartLink } from '../site-provider';
+import { SmartLink } from '../shared-ui-provider';
 import type { NavItem } from './header-types';
 
 /** 移动端二级列表：支持带 subItems 的项展开三级 */

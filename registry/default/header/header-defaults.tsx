@@ -1,7 +1,7 @@
 import { IconArrowsTransferUpDown, IconBrandTelegram, IconBrandX, IconDownload } from '@tabler/icons-react';
 import React from 'react';
 import { cn } from '../cn';
-import { SmartLink } from '../site-provider';
+import { SmartLink } from '../shared-ui-provider';
 import { socialLinks } from '../social-links';
 import { IconMenuLink, PixelIcon, SignTokenPanel } from './header-sign-token-panel';
 import type { NavItem } from './header-types';
@@ -52,7 +52,8 @@ const ProductCard: React.FC<{
 
 // --- 默认导航菜单 ---
 
-export const DEFAULT_NAVIGATION_MENU: NavItem[] = [
+export function createDefaultNavigationMenu(enableStakeSubMenu: boolean): NavItem[] {
+  return [
   {
     label: 'Product',
     mobileItems: [
@@ -201,15 +202,17 @@ export const DEFAULT_NAVIGATION_MENU: NavItem[] = [
           />
         )
       },
-      {
-        label: 'Stake',
-        href: '#',
-        icon: <IconDownload className="size-6 opacity-70" />,
-        subItems: [
-          { label: 'Staker', href: 'https://stake.sign.global/' },
-          { label: 'Orange Dynasty Yield', href: 'https://stake.sign.global/orange-dynasty-yield' }
-        ]
-      },
+      enableStakeSubMenu
+        ? {
+            label: 'Stake',
+            href: '#',
+            icon: <IconDownload className="size-6 opacity-70" />,
+            subItems: [
+              { label: 'Staker', href: 'https://stake.sign.global/' },
+              { label: 'Orange Dynasty Yield', href: 'https://stake.sign.global/orange-dynasty-yield' }
+            ]
+          }
+        : { label: 'Stake', href: 'https://stake.sign.global/', icon: <IconDownload className="size-6 opacity-70" /> },
       {
         label: 'Bridge',
         href: 'https://bridge.sign.global/',
@@ -228,4 +231,5 @@ export const DEFAULT_NAVIGATION_MENU: NavItem[] = [
     ],
     children: (isDark, resolveHref) => <SignTokenPanel isDarkTheme={isDark} resolveHref={resolveHref} />
   }
-];
+  ];
+}

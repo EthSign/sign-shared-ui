@@ -17,16 +17,16 @@
       ]
     },
     {
-      "name": "site-provider",
+      "name": "shared-ui-provider",
       "type": "registry:lib",
-      "title": "Sign Site Provider",
-      "description": "React Context provider for site-aware URL resolution. Wrap your app with SignSiteProvider to enable internal navigation for same-site links.",
+      "title": "Sign Shared UI Provider",
+      "description": "React Context provider for shared UI configuration: site-aware URL resolution, feature flags, and more.",
       "dependencies": ["react-router-dom"],
       "files": [
         {
-          "path": "registry/default/site-provider/site-provider.tsx",
+          "path": "registry/default/shared-ui-provider/shared-ui-provider.tsx",
           "type": "registry:lib",
-          "target": "shared/site-provider.tsx"
+          "target": "shared/shared-ui-provider.tsx"
         }
       ]
     },
@@ -151,7 +151,7 @@
       "title": "Sign Global Footer",
       "description": "Responsive footer with social links, navigation, disclaimers, and optional animation",
       "dependencies": ["clsx", "react-router-dom", "motion"],
-      "registryDependencies": ["@sign/sign-logo", "@sign/nav-config", "@sign/cn", "@sign/shared-styles", "@sign/site-provider"],
+      "registryDependencies": ["@sign/sign-logo", "@sign/nav-config", "@sign/cn", "@sign/shared-styles", "@sign/shared-ui-provider"],
       "files": [
         {
           "path": "registry/default/footer/footer.tsx",
@@ -166,7 +166,7 @@
       "title": "Sign Global Header",
       "description": "Responsive header with multi-level navigation, safe-triangle hover, and mobile navbar",
       "dependencies": ["@floating-ui/react", "@tabler/icons-react", "react-router-dom"],
-      "registryDependencies": ["@sign/icons", "@sign/button", "@sign/container", "@sign/cn", "@sign/v-dashed", "@sign/nav-config", "@sign/site-provider"],
+      "registryDependencies": ["@sign/icons", "@sign/button", "@sign/container", "@sign/cn", "@sign/v-dashed", "@sign/nav-config", "@sign/shared-ui-provider"],
       "files": [
         {
           "path": "registry/default/header/index.ts",

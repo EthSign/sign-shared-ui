@@ -1,7 +1,7 @@
 import { IconArrowsTransferUpDown, IconDownload } from '@tabler/icons-react';
 import React from 'react';
 import { cn } from '../cn';
-import { SmartLink } from '../site-provider';
+import { SmartLink, useSignSharedUI } from '../shared-ui-provider';
 import type { SubMenuItem } from './header-types';
 import { useExpandableMenu } from './header-nav-dropdown';
 
@@ -78,7 +78,6 @@ const SubMenuRow: React.FC<{
   </div>
 );
 
-// 默认 Stake 子菜单项
 const STAKE_SUB_ITEMS: SubMenuItem[] = [
   { label: 'Staker', href: 'https://stake.sign.global/' },
   { label: 'Orange Dynasty Yield', href: 'https://stake.sign.global/orange-dynasty-yield' }
@@ -87,9 +86,10 @@ const STAKE_SUB_ITEMS: SubMenuItem[] = [
 /** $SIGN Token 面板：内部管理 Stake 的三级展开 + safe-triangle */
 export const SignTokenPanel: React.FC<{
   isDarkTheme: boolean;
-  stakeSubItems?: SubMenuItem[];
   resolveHref: (href: string) => string;
-}> = ({ isDarkTheme, stakeSubItems = STAKE_SUB_ITEMS, resolveHref }) => {
+}> = ({ isDarkTheme, resolveHref }) => {
+  const { enableStakeSubMenu } = useSignSharedUI();
+  const stakeSubItems = enableStakeSubMenu ? STAKE_SUB_ITEMS : [];
   const { isExpanded, triggerRef, triggerProps, submenuRef, submenuProps } = useExpandableMenu();
 
   return (
@@ -106,46 +106,56 @@ export const SignTokenPanel: React.FC<{
           label="Official Token Site"
           href={resolveHref('https://sign.global/sign')}
         />
-        <div
-          ref={triggerRef}
-          {...triggerProps}
-          className={cn(
-            'flex cursor-pointer items-center gap-4 px-10 py-12 transition-all duration-300 group/item v-dashed-l',
-            isExpanded
-              ? isDarkTheme
-                ? 'bg-neutral-800'
-                : 'bg-white'
-              : isDarkTheme
-              ? 'hover:bg-neutral-800 bg-white/[0.02]'
-              : 'hover:bg-white bg-white/40'
-          )}
-        >
-          <div className="shrink-0 transition-transform duration-300 group-hover/item:scale-110 [&>svg]:stroke-1">
-            <IconDownload className={isDarkTheme ? 'text-white/60' : 'text-[#787B7E]'} />
-          </div>
-          <span
+        {enableStakeSubMenu ? (
+          <div
+            ref={triggerRef}
+            {...triggerProps}
             className={cn(
-              'text-[16px] font-medium transition-colors overflow-hidden',
+              'flex cursor-pointer items-center gap-4 px-10 py-12 transition-all duration-300 group/item v-dashed-l',
               isExpanded
                 ? isDarkTheme
-                  ? 'text-white'
-                  : 'text-slate-900'
+                  ? 'bg-neutral-800'
+                  : 'bg-white'
                 : isDarkTheme
-                ? 'text-white/70 group-hover/item:text-white'
-                : 'text-[#4B4E53] group-hover/item:text-slate-900'
+                ? 'hover:bg-neutral-800 bg-white/[0.02]'
+                : 'hover:bg-white bg-white/40'
             )}
           >
-            Stake
-          </span>
-          <div
-            className={cn(
-              'ml-auto transition-opacity duration-300',
-              isExpanded ? 'opacity-100' : 'opacity-0 group-hover/item:opacity-100'
-            )}
-          >
-            <PixelIcon />
+            <div className="shrink-0 transition-transform duration-300 group-hover/item:scale-110 [&>svg]:stroke-1">
+              <IconDownload className={isDarkTheme ? 'text-white/60' : 'text-[#787B7E]'} />
+            </div>
+            <span
+              className={cn(
+                'text-[16px] font-medium transition-colors overflow-hidden',
+                isExpanded
+                  ? isDarkTheme
+                    ? 'text-white'
+                    : 'text-slate-900'
+                  : isDarkTheme
+                  ? 'text-white/70 group-hover/item:text-white'
+                  : 'text-[#4B4E53] group-hover/item:text-slate-900'
+              )}
+            >
+              Stake
+            </span>
+            <div
+              className={cn(
+                'ml-auto transition-opacity duration-300',
+                isExpanded ? 'opacity-100' : 'opacity-0 group-hover/item:opacity-100'
+              )}
+            >
+              <PixelIcon />
+            </div>
           </div>
-        </div>
+        ) : (
+          <IconMenuLink
+            isDarkTheme={isDarkTheme}
+            icon={<IconDownload className={isDarkTheme ? 'text-white/60' : 'text-[#787B7E]'} />}
+            label="Stake"
+            href={resolveHref('https://stake.sign.global/')}
+            showBorder
+          />
+        )}
         <IconMenuLink
           isDarkTheme={isDarkTheme}
           icon={
@@ -168,20 +178,22 @@ export const SignTokenPanel: React.FC<{
           showBorder
         />
       </div>
-      <div
-        ref={submenuRef}
-        {...submenuProps}
-        className={cn(
-          'grid transition-all duration-200 overflow-hidden',
-          isExpanded ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
-        )}
-      >
-        <div className="min-h-0">
-          <div className={cn('v-dashed-t', isDarkTheme ? 'border-neutral-700' : 'border-[#D2D3D4]')}>
-            <SubMenuRow items={stakeSubItems} isDarkTheme={isDarkTheme} resolveHref={resolveHref} />
+      {enableStakeSubMenu && (
+        <div
+          ref={submenuRef}
+          {...submenuProps}
+          className={cn(
+            'grid transition-all duration-200 overflow-hidden',
+            isExpanded ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+          )}
+        >
+          <div className="min-h-0">
+            <div className={cn('v-dashed-t', isDarkTheme ? 'border-neutral-700' : 'border-[#D2D3D4]')}>
+              <SubMenuRow items={stakeSubItems} isDarkTheme={isDarkTheme} resolveHref={resolveHref} />
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

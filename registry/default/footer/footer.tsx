@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { motion } from 'motion/react';
 import React, { useLayoutEffect, useRef, useState } from 'react';
 import { DEFAULT_FOOTER_CONFIG, type FooterConfig } from './nav-config';
-import { SmartLink, useSignSite } from './site-provider';
+import { SmartLink, useSignSharedUI } from './shared-ui-provider';
 
 // --- 动画 variants（仅 animated=true 时使用）---
 
@@ -70,7 +70,7 @@ export interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({ className, animated = true, config = DEFAULT_FOOTER_CONFIG }) => {
-  const { resolveHref } = useSignSite();
+  const { resolveHref } = useSignSharedUI();
   const contentRef = useRef<HTMLDivElement>(null);
   const [isImmersive, setIsImmersive] = useState(false);
 

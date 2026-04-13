@@ -5,8 +5,8 @@ import { Button } from '../button';
 import { cn } from '../cn';
 import { Container } from '../container';
 import { SignGradientIcon, SignIcon } from '../icons';
-import { SmartLink, useSignSite } from '../site-provider';
-import { DEFAULT_NAVIGATION_MENU } from './header-defaults';
+import { SmartLink, useSignSharedUI } from '../shared-ui-provider';
+import { createDefaultNavigationMenu } from './header-defaults';
 import { MobileNavbar } from './header-mobile-navbar';
 import { NavDropdownItem } from './header-nav-dropdown';
 import type { HeaderProps } from './header-types';
@@ -17,9 +17,10 @@ export const Header: React.FC<HeaderProps> = ({
   visible = true,
   showWhitePaperButton = true,
   actionSlot,
-  navigationMenu = DEFAULT_NAVIGATION_MENU
+  navigationMenu
 }) => {
-  const { resolveHref } = useSignSite();
+  const { resolveHref, enableStakeSubMenu } = useSignSharedUI();
+  const effectiveNavigationMenu = navigationMenu ?? createDefaultNavigationMenu(enableStakeSubMenu);
   const [isHovered, setIsHovered] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeNavIndex, setActiveNavIndex] = useState<number | null>(null);
@@ -60,7 +61,7 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* PC Nav */}
           <nav className="hidden items-center lg:flex">
-            {navigationMenu.map((item, index) => (
+            {effectiveNavigationMenu.map((item, index) => (
               <NavDropdownItem
                 key={item.label}
                 item={item}
@@ -107,7 +108,7 @@ export const Header: React.FC<HeaderProps> = ({
         isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}
         isDark={isDark}
-        navigationMenu={navigationMenu}
+        navigationMenu={effectiveNavigationMenu}
         resolveHref={resolveHref}
       />
     </>
