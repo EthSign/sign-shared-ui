@@ -1,0 +1,13 @@
+{
+  "name": "sign-shared-ui",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "registry:build": "shadcn build",
+    "registry:serve": "shadcn build && serve public -p 4000"
+  },
+  "devDependencies": {
+    "serve": "^14",
+    "shadcn": "latest"
+  }
+}

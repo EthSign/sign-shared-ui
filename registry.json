@@ -1,0 +1,209 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "sign-shared-ui",
+  "homepage": "https://sign.global",
+  "items": [
+    {
+      "name": "cn",
+      "type": "registry:lib",
+      "title": "cn utility",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/default/cn/cn.ts",
+          "type": "registry:lib",
+          "target": "shared/cn.ts"
+        }
+      ]
+    },
+    {
+      "name": "site-provider",
+      "type": "registry:lib",
+      "title": "Sign Site Provider",
+      "description": "React Context provider for site-aware URL resolution. Wrap your app with SignSiteProvider to enable internal navigation for same-site links.",
+      "dependencies": ["react-router-dom"],
+      "files": [
+        {
+          "path": "registry/default/site-provider/site-provider.tsx",
+          "type": "registry:lib",
+          "target": "shared/site-provider.tsx"
+        }
+      ]
+    },
+    {
+      "name": "icons",
+      "type": "registry:component",
+      "title": "Sign Icons",
+      "description": "SignIcon and SignGradientIcon brand logos",
+      "files": [
+        {
+          "path": "registry/default/icons/icons.tsx",
+          "type": "registry:component",
+          "target": "shared/icons.tsx"
+        }
+      ]
+    },
+    {
+      "name": "container",
+      "type": "registry:component",
+      "title": "Container / Section",
+      "registryDependencies": ["@sign/cn"],
+      "files": [
+        {
+          "path": "registry/default/container/container.tsx",
+          "type": "registry:component",
+          "target": "shared/container.tsx"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["@sign/cn"],
+      "files": [
+        {
+          "path": "registry/default/button/button.tsx",
+          "type": "registry:ui",
+          "target": "shared/button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sign-logo",
+      "type": "registry:component",
+      "title": "Sign Logo",
+      "description": "SignLogo (static) and AnimatedSignLogo (with motion)",
+      "dependencies": ["clsx", "motion"],
+      "files": [
+        {
+          "path": "registry/default/sign-logo/sign-logo.tsx",
+          "type": "registry:component",
+          "target": "shared/sign-logo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "nav-config",
+      "type": "registry:lib",
+      "title": "Navigation Configuration",
+      "description": "Social links, footer config, URL utilities, and default navigation menu",
+      "files": [
+        {
+          "path": "registry/default/nav-config/social-links.ts",
+          "type": "registry:lib",
+          "target": "shared/social-links.ts"
+        },
+        {
+          "path": "registry/default/nav-config/nav-config.tsx",
+          "type": "registry:lib",
+          "target": "shared/nav-config.tsx"
+        }
+      ]
+    },
+    {
+      "name": "v-dashed",
+      "type": "registry:file",
+      "title": "Tailwind v-dashed plugin",
+      "description": "Dashed border utilities for Tailwind CSS. Note: existing projects that already have this plugin may need to deduplicate the tailwind.config.js plugins array after installation.",
+      "files": [
+        {
+          "path": "registry/default/v-dashed/tailwind.plugin.v-dashed.js",
+          "type": "registry:file",
+          "target": "shared/tailwind.plugin.v-dashed.js"
+        }
+      ],
+      "css": {
+        "@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@100..900&display=swap')": {}
+      },
+      "tailwind": {
+        "config": {
+          "plugins": ["require('./src/shared/tailwind.plugin.v-dashed')"],
+          "theme": {
+            "extend": {
+              "fontFamily": {
+                "archivo": ["Archivo", "sans-serif"]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "shared-styles",
+      "type": "registry:style",
+      "title": "Shared CSS utilities",
+      "description": "text-orange-gradient and other shared utility classes",
+      "css": {
+        "@layer utilities": {
+          ".text-orange-gradient": {
+            "background": "linear-gradient(180deg, #FFA90F 0%, #FF7801 100%)",
+            "-webkit-background-clip": "text",
+            "-webkit-text-fill-color": "transparent"
+          }
+        }
+      }
+    },
+    {
+      "name": "footer",
+      "type": "registry:block",
+      "title": "Sign Global Footer",
+      "description": "Responsive footer with social links, navigation, disclaimers, and optional animation",
+      "dependencies": ["clsx", "react-router-dom", "motion"],
+      "registryDependencies": ["@sign/sign-logo", "@sign/nav-config", "@sign/cn", "@sign/shared-styles", "@sign/site-provider"],
+      "files": [
+        {
+          "path": "registry/default/footer/footer.tsx",
+          "type": "registry:component",
+          "target": "shared/footer.tsx"
+        }
+      ]
+    },
+    {
+      "name": "header",
+      "type": "registry:block",
+      "title": "Sign Global Header",
+      "description": "Responsive header with multi-level navigation, safe-triangle hover, and mobile navbar",
+      "dependencies": ["@floating-ui/react", "@tabler/icons-react", "react-router-dom"],
+      "registryDependencies": ["@sign/icons", "@sign/button", "@sign/container", "@sign/cn", "@sign/v-dashed", "@sign/nav-config", "@sign/site-provider"],
+      "files": [
+        {
+          "path": "registry/default/header/index.ts",
+          "type": "registry:lib",
+          "target": "shared/header/index.ts"
+        },
+        {
+          "path": "registry/default/header/header.tsx",
+          "type": "registry:component",
+          "target": "shared/header/header.tsx"
+        },
+        {
+          "path": "registry/default/header/header-types.ts",
+          "type": "registry:lib",
+          "target": "shared/header/header-types.ts"
+        },
+        {
+          "path": "registry/default/header/header-defaults.tsx",
+          "type": "registry:component",
+          "target": "shared/header/header-defaults.tsx"
+        },
+        {
+          "path": "registry/default/header/header-nav-dropdown.tsx",
+          "type": "registry:component",
+          "target": "shared/header/header-nav-dropdown.tsx"
+        },
+        {
+          "path": "registry/default/header/header-sign-token-panel.tsx",
+          "type": "registry:component",
+          "target": "shared/header/header-sign-token-panel.tsx"
+        },
+        {
+          "path": "registry/default/header/header-mobile-navbar.tsx",
+          "type": "registry:component",
+          "target": "shared/header/header-mobile-navbar.tsx"
+        }
+      ]
+    }
+  ]
+}
