@@ -56,11 +56,11 @@ export const DEFAULT_NAVIGATION_MENU: NavItem[] = [
   {
     label: 'Product',
     mobileItems: [
-      { label: 'Programmable Money: CBDC & Stablecoins', href: '/use-cases/programmable-money' },
-      { label: 'Digital ID System: Verifiable Credentials', href: '/use-cases/digital-id-system' },
-      { label: 'Sovereign Capital Markets: RWA', href: '/use-cases/rwa' },
-      { label: 'TokenTable', href: '/tokentable' },
-      { label: 'EthSign', href: '/ethsign' },
+      { label: 'Programmable Money: CBDC & Stablecoins', href: 'https://sign.global/use-cases/programmable-money' },
+      { label: 'Digital ID System: Verifiable Credentials', href: 'https://sign.global/use-cases/digital-id-system' },
+      { label: 'Sovereign Capital Markets: RWA', href: 'https://sign.global/use-cases/rwa' },
+      { label: 'TokenTable', href: 'https://sign.global/tokentable' },
+      { label: 'EthSign', href: 'https://sign.global/ethsign' },
       { label: 'Sign Protocol', href: 'https://app.sign.global' }
     ],
     children: (isDark, resolveHref) => (
@@ -68,21 +68,21 @@ export const DEFAULT_NAVIGATION_MENU: NavItem[] = [
         <ProductCard
           isDarkTheme={isDark}
           title="Programmable Money: CBDC & Stablecoins"
-          href={resolveHref('/use-cases/programmable-money')}
+          href={resolveHref('https://sign.global/use-cases/programmable-money')}
           img="https://public-cdn.sign.global/Attestation-Frontend/global/v3/images/nav-image-product-money_260108065401.webp"
           showRightBorder
         />
         <ProductCard
           isDarkTheme={isDark}
           title="Digital ID System: Verifiable Credentials"
-          href={resolveHref('/use-cases/digital-id-system')}
+          href={resolveHref('https://sign.global/use-cases/digital-id-system')}
           img="https://public-cdn.sign.global/Attestation-Frontend/global/v3/images/nav-image-product-id_260108065402.webp"
           showRightBorder
         />
         <ProductCard
           isDarkTheme={isDark}
           title="Sovereign Capital Markets: RWA"
-          href={resolveHref('/use-cases/rwa')}
+          href={resolveHref('https://sign.global/use-cases/rwa')}
           img="https://public-cdn.sign.global/Attestation-Frontend/global/v3/images/nav-image-product-capital_260108065402.webp"
         />
         <div
@@ -91,14 +91,14 @@ export const DEFAULT_NAVIGATION_MENU: NavItem[] = [
           <ProductCard
             isDarkTheme={isDark}
             title="TokenTable"
-            href={resolveHref('/tokentable')}
+            href={resolveHref('https://sign.global/tokentable')}
             img="https://public-cdn.sign.global/Attestation-Frontend/global/v3/images/nav-image-product-tokentable_260108065401.webp"
             showRightBorder
           />
           <ProductCard
             isDarkTheme={isDark}
             title="EthSign"
-            href={resolveHref('/ethsign')}
+            href={resolveHref('https://sign.global/ethsign')}
             img="https://public-cdn.sign.global/Attestation-Frontend/global/v3/images/nav-image-product-ethsign_260108065402.webp"
             showRightBorder
           />
@@ -127,7 +127,7 @@ export const DEFAULT_NAVIGATION_MENU: NavItem[] = [
       },
       {
         label: 'Orange Dynasty',
-        href: '/orange-dynasty',
+        href: 'https://sign.global/orange-dynasty',
         icon: (
           <img
             className="size-6"
@@ -169,7 +169,7 @@ export const DEFAULT_NAVIGATION_MENU: NavItem[] = [
             />
           }
           label="Orange Dynasty"
-          href={resolveHref('/orange-dynasty')}
+          href={resolveHref('https://sign.global/orange-dynasty')}
         />
         <IconMenuLink
           isDarkTheme={isDark}
@@ -193,7 +193,7 @@ export const DEFAULT_NAVIGATION_MENU: NavItem[] = [
     mobileItems: [
       {
         label: 'Official Token Site',
-        href: '/sign',
+        href: 'https://sign.global/sign',
         icon: (
           <img
             className="size-6"

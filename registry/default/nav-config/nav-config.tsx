@@ -2,21 +2,6 @@ import { socialLinks } from './social-links';
 export { socialLinks };
 
 // ============================================================
-// URL Utilities
-// ============================================================
-
-/** 解析 URL：绝对路径直接返回，相对路径拼接 baseUrl */
-export function resolveUrl(baseUrl: string, path: string): string {
-  if (path.startsWith('http')) return path;
-  return `${baseUrl}${path}`;
-}
-
-/** 批量替换配置中的相对路径 */
-function resolveUrls<T extends { url: string }>(items: T[], baseUrl: string): T[] {
-  return items.map((item) => ({ ...item, url: resolveUrl(baseUrl, item.url) }));
-}
-
-// ============================================================
 // Footer Configuration
 // ============================================================
 
@@ -61,14 +46,14 @@ export const DEFAULT_FOOTER_CONFIG: FooterConfig = {
     {
       label: 'PRODUCTS',
       items: [
-        { name: 'TokenTable', url: '/tokentable' },
+        { name: 'TokenTable', url: 'https://sign.global/tokentable' },
         { name: 'EthSign', url: 'https://app.ethsign.xyz' },
         { name: 'Sign Protocol', url: 'https://app.sign.global' },
         { name: 'SignScan', url: 'https://scan.sign.global' },
         { name: 'Orange Dynasty App', url: 'https://orange.sign.global', isNew: false },
-        { name: 'Programmable Money', url: '/use-cases/programmable-money' },
-        { name: 'Digital ID system', url: '/use-cases/digital-id-system' },
-        { name: 'RWA', url: '/use-cases/rwa' }
+        { name: 'Programmable Money', url: 'https://sign.global/use-cases/programmable-money' },
+        { name: 'Digital ID system', url: 'https://sign.global/use-cases/digital-id-system' },
+        { name: 'RWA', url: 'https://sign.global/use-cases/rwa' }
       ]
     },
     {
@@ -83,8 +68,8 @@ export const DEFAULT_FOOTER_CONFIG: FooterConfig = {
           name: 'Brand Assets',
           url: 'https://drive.google.com/drive/folders/1DCjvqTxg5YuizmpZ34cpOQ6Qo0x6Vffo?usp=sharing'
         },
-        { name: 'Privacy Policy', url: '/privacy_policy' },
-        { name: 'SIGN MiCA Whitepaper', url: '/Sign_SIGN_MiCA_Whitepaper.pdf' }
+        { name: 'Privacy Policy', url: 'https://sign.global/privacy_policy' },
+        { name: 'SIGN MiCA Whitepaper', url: 'https://sign.global/Sign_SIGN_MiCA_Whitepaper.pdf' }
       ]
     }
   ],
@@ -100,24 +85,7 @@ export const DEFAULT_FOOTER_CONFIG: FooterConfig = {
   legal: {
     copyright: `© ${new Date().getFullYear()} Sign Foundation. All rights reserved.`,
     termsLabel: 'Terms & Conditions',
-    termsUrl: '/privacy_policy'
+    termsUrl: 'https://sign.global/privacy_policy'
   }
 };
 
-/** 创建自定义 Footer 配置（支持 baseUrl 替换相对路径） */
-export function createFooterConfig(options?: { baseUrl?: string }): FooterConfig {
-  const baseUrl = options?.baseUrl ?? '';
-  if (!baseUrl) return DEFAULT_FOOTER_CONFIG;
-
-  return {
-    ...DEFAULT_FOOTER_CONFIG,
-    navigation: DEFAULT_FOOTER_CONFIG.navigation.map((group) => ({
-      ...group,
-      items: resolveUrls(group.items, baseUrl)
-    })),
-    legal: {
-      ...DEFAULT_FOOTER_CONFIG.legal,
-      termsUrl: resolveUrl(baseUrl, DEFAULT_FOOTER_CONFIG.legal.termsUrl)
-    }
-  };
-}

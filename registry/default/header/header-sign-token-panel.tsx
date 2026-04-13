@@ -104,7 +104,7 @@ export const SignTokenPanel: React.FC<{
             />
           }
           label="Official Token Site"
-          href={resolveHref('/sign')}
+          href={resolveHref('https://sign.global/sign')}
         />
         <div
           ref={triggerRef}

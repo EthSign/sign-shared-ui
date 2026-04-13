@@ -5,7 +5,7 @@ import { Button } from '../button';
 import { cn } from '../cn';
 import { Container } from '../container';
 import { SignGradientIcon, SignIcon } from '../icons';
-import { useSignSite } from '../site-provider';
+import { SmartLink, useSignSite } from '../site-provider';
 import { DEFAULT_NAVIGATION_MENU } from './header-defaults';
 import { MobileNavbar } from './header-mobile-navbar';
 import { NavDropdownItem } from './header-nav-dropdown';
@@ -74,7 +74,7 @@ export const Header: React.FC<HeaderProps> = ({
             ))}
 
             {showWhitePaperButton && (
-              <Link to="https://docs.sign.global/" target="_blank" className="hidden md:block">
+              <SmartLink href="https://docs.sign.global/" className="hidden md:block">
                 <Button
                   size="sm"
                   variant={isTransparent ? 'transparent' : 'secondary'}
@@ -83,7 +83,7 @@ export const Header: React.FC<HeaderProps> = ({
                 >
                   S.I.G.N. Whitepaper
                 </Button>
-              </Link>
+              </SmartLink>
             )}
           </nav>
 
