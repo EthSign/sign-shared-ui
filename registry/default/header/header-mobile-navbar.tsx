@@ -147,7 +147,7 @@ export const MobileNavbar: React.FC<{
               <span className="text-[18px] font-bold">{activeTab.label}</span>
             </button>
           ) : (
-            <div className="flex items-center">{isDark ? <SignIcon /> : <SignGradientIcon className="w-[68px]" />}</div>
+            <div className="flex items-center">{isDark ? <SignIcon className="w-[68px]" /> : <SignGradientIcon className="w-[68px]" />}</div>
           )}
           <button onClick={onClose} className="-mr-2 p-2">
             <IconX className="size-6" />

@@ -46,13 +46,13 @@ export const Header: React.FC<HeaderProps> = ({
           <Link to="/" className="inline-block shrink-0 transition-transform hover:scale-105 active:scale-95">
             {isTransparent ? (
               <div className="relative">
-                <SignIcon className="transition-opacity group-hover/header:opacity-0" />
-                <SignGradientIcon className="absolute inset-0 opacity-0 transition-opacity group-hover/header:opacity-100" />
+                <SignIcon className="w-[68px] lg:w-[82px] transition-opacity group-hover/header:opacity-0" />
+                <SignGradientIcon className="absolute inset-0 w-[68px] lg:w-[82px] opacity-0 transition-opacity group-hover/header:opacity-100" />
               </div>
             ) : isDark ? (
-              <SignIcon />
+              <SignIcon className="w-[68px] lg:w-[82px]" />
             ) : (
-              <SignGradientIcon />
+              <SignGradientIcon className="w-[68px] lg:w-[82px]" />
             )}
           </Link>
 
