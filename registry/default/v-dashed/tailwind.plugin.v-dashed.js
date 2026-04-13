@@ -1,9 +1,6 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable no-undef */
+import plugin from 'tailwindcss/plugin';
 
-const plugin = require('tailwindcss/plugin');
-
-module.exports = plugin(function ({ addUtilities, matchUtilities, theme }) {
+export default plugin(function ({ addUtilities, matchUtilities, theme }) {
   const defaultSize = theme('dashedLine.size', '1.5px');
   const defaultGap = theme('dashedLine.gap', '8px');
   const defaultColor = theme('dashedLine.color', '#A5A7A9');
