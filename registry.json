@@ -10,7 +10,7 @@
       "dependencies": ["clsx", "tailwind-merge"],
       "files": [
         {
-          "path": "registry/default/cn/cn.ts",
+          "path": "registry/default/cn.ts",
           "type": "registry:lib",
           "target": "shared/cn.ts"
         }
@@ -24,7 +24,7 @@
       "dependencies": ["react-router-dom"],
       "files": [
         {
-          "path": "registry/default/shared-ui-provider/shared-ui-provider.tsx",
+          "path": "registry/default/shared-ui-provider.tsx",
           "type": "registry:lib",
           "target": "shared/shared-ui-provider.tsx"
         }
@@ -37,7 +37,7 @@
       "description": "SignIcon and SignGradientIcon brand logos",
       "files": [
         {
-          "path": "registry/default/icons/icons.tsx",
+          "path": "registry/default/icons.tsx",
           "type": "registry:component",
           "target": "shared/icons.tsx"
         }
@@ -50,7 +50,7 @@
       "registryDependencies": ["@sign/cn"],
       "files": [
         {
-          "path": "registry/default/container/container.tsx",
+          "path": "registry/default/container.tsx",
           "type": "registry:component",
           "target": "shared/container.tsx"
         }
@@ -64,7 +64,7 @@
       "registryDependencies": ["@sign/cn"],
       "files": [
         {
-          "path": "registry/default/button/button.tsx",
+          "path": "registry/default/button.tsx",
           "type": "registry:ui",
           "target": "shared/button.tsx"
         }
@@ -78,7 +78,7 @@
       "dependencies": ["clsx", "motion"],
       "files": [
         {
-          "path": "registry/default/sign-logo/sign-logo.tsx",
+          "path": "registry/default/sign-logo.tsx",
           "type": "registry:component",
           "target": "shared/sign-logo.tsx"
         }
@@ -91,12 +91,12 @@
       "description": "Social links, footer config, URL utilities, and default navigation menu",
       "files": [
         {
-          "path": "registry/default/nav-config/social-links.ts",
+          "path": "registry/default/social-links.ts",
           "type": "registry:lib",
           "target": "shared/social-links.ts"
         },
         {
-          "path": "registry/default/nav-config/nav-config.tsx",
+          "path": "registry/default/nav-config.tsx",
           "type": "registry:lib",
           "target": "shared/nav-config.tsx"
         }
@@ -109,7 +109,7 @@
       "description": "Dashed border utilities for Tailwind CSS. Note: existing projects that already have this plugin may need to deduplicate the tailwind.config.js plugins array after installation.",
       "files": [
         {
-          "path": "registry/default/v-dashed/tailwind.plugin.v-dashed.js",
+          "path": "registry/default/tailwind.plugin.v-dashed.js",
           "type": "registry:file",
           "target": "shared/tailwind.plugin.v-dashed.js"
         }
@@ -154,7 +154,7 @@
       "registryDependencies": ["@sign/sign-logo", "@sign/nav-config", "@sign/cn", "@sign/shared-styles", "@sign/shared-ui-provider"],
       "files": [
         {
-          "path": "registry/default/footer/footer.tsx",
+          "path": "registry/default/footer.tsx",
           "type": "registry:component",
           "target": "shared/footer.tsx"
         }
