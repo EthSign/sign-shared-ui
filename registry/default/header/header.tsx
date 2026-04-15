@@ -19,8 +19,8 @@ export const Header: React.FC<HeaderProps> = ({
   actionSlot,
   navigationMenu
 }) => {
-  const { resolveHref, enableStakeSubMenu } = useSignSharedUI();
-  const effectiveNavigationMenu = navigationMenu ?? createDefaultNavigationMenu(enableStakeSubMenu);
+  const { resolveHref } = useSignSharedUI();
+  const effectiveNavigationMenu = navigationMenu ?? createDefaultNavigationMenu();
   const [isHovered, setIsHovered] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeNavIndex, setActiveNavIndex] = useState<number | null>(null);

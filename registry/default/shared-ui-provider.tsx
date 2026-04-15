@@ -3,12 +3,9 @@ import { Link } from 'react-router-dom';
 
 interface SignSharedUIContextValue {
   siteOrigin?: string;
-  enableStakeSubMenu: boolean;
 }
 
-const SignSharedUIContext = createContext<SignSharedUIContextValue>({
-  enableStakeSubMenu: false
-});
+const SignSharedUIContext = createContext<SignSharedUIContextValue>({});
 
 export function resolveHref(href: string, siteOrigin?: string): string {
   if (!siteOrigin || !href) return href;
@@ -30,8 +27,8 @@ export function useSignSharedUI() {
     [ctx.siteOrigin]
   );
   return useMemo(
-    () => ({ siteOrigin: ctx.siteOrigin, resolveHref: resolve, enableStakeSubMenu: ctx.enableStakeSubMenu }),
-    [ctx.siteOrigin, resolve, ctx.enableStakeSubMenu]
+    () => ({ siteOrigin: ctx.siteOrigin, resolveHref: resolve }),
+    [ctx.siteOrigin, resolve]
   );
 }
 
@@ -59,9 +56,8 @@ export const SmartLink: React.FC<
 
 export const SignSharedUIProvider: React.FC<{
   siteOrigin?: string;
-  enableStakeSubMenu?: boolean;
   children: React.ReactNode;
-}> = ({ siteOrigin, enableStakeSubMenu = false, children }) => {
-  const value = useMemo(() => ({ siteOrigin, enableStakeSubMenu }), [siteOrigin, enableStakeSubMenu]);
+}> = ({ siteOrigin, children }) => {
+  const value = useMemo(() => ({ siteOrigin }), [siteOrigin]);
   return <SignSharedUIContext.Provider value={value}>{children}</SignSharedUIContext.Provider>;
 };

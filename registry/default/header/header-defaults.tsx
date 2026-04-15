@@ -52,7 +52,7 @@ const ProductCard: React.FC<{
 
 // --- 默认导航菜单 ---
 
-export function createDefaultNavigationMenu(enableStakeSubMenu: boolean): NavItem[] {
+export function createDefaultNavigationMenu(): NavItem[] {
   return [
   {
     label: 'Product',
@@ -202,17 +202,15 @@ export function createDefaultNavigationMenu(enableStakeSubMenu: boolean): NavIte
           />
         )
       },
-      enableStakeSubMenu
-        ? {
-            label: 'Stake',
-            href: '#',
-            icon: <IconDownload className="size-6 opacity-70" />,
-            subItems: [
-              { label: 'Staker', href: 'https://stake.sign.global/' },
-              { label: 'Orange Dynasty Yield', href: 'https://stake.sign.global/orange-dynasty-yield' }
-            ]
-          }
-        : { label: 'Stake', href: 'https://stake.sign.global/', icon: <IconDownload className="size-6 opacity-70" /> },
+      {
+        label: 'Stake',
+        href: '#',
+        icon: <IconDownload className="size-6 opacity-70" />,
+        subItems: [
+          { label: 'Orange Basic Income', href: 'https://stake.sign.global/' },
+          { label: 'Orange Dynasty Yield', href: 'https://stake.sign.global/orange-dynasty-yield' }
+        ]
+      },
       {
         label: 'Bridge',
         href: 'https://bridge.sign.global/',

@@ -11,14 +11,12 @@ const SITES = [
 
 export default function App() {
   const [siteIndex, setSiteIndex] = useState(0);
-  const [enableStakeSubMenu, setEnableStakeSubMenu] = useState(false);
   const [animated, setAnimated] = useState(true);
 
   return (
     <BrowserRouter>
       <SignSharedUIProvider
         siteOrigin={SITES[siteIndex].origin}
-        enableStakeSubMenu={enableStakeSubMenu}
       >
         {/* Control Panel */}
         <div className="sticky top-0 z-[100] bg-amber-50 border-b border-amber-200 px-4 py-2 flex flex-wrap items-center gap-4 text-sm font-archivo">
@@ -34,14 +32,6 @@ export default function App() {
               </option>
             ))}
           </select>
-          <label className="flex items-center gap-1.5 cursor-pointer">
-            <input
-              type="checkbox"
-              checked={enableStakeSubMenu}
-              onChange={(e) => setEnableStakeSubMenu(e.target.checked)}
-            />
-            <span>enableStakeSubMenu</span>
-          </label>
           <label className="flex items-center gap-1.5 cursor-pointer">
             <input
               type="checkbox"
