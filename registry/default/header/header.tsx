@@ -29,6 +29,11 @@ export const Header: React.FC<HeaderProps> = ({
   const isTransparent = effectiveVariant === 'transparent';
   const isDark = effectiveVariant === 'dark';
 
+  // 有 actionSlot 时把桌面态断点抬到 xl（≥1280px），避免 lg-xl 区间挤压
+  const desktopFlexClass = actionSlot ? 'xl:flex' : 'lg:flex';
+  const desktopHiddenClass = actionSlot ? 'xl:hidden' : 'lg:hidden';
+  const logoLargeClass = actionSlot ? 'xl:w-[82px]' : 'lg:w-[82px]';
+
   return (
     <>
       <header
@@ -47,20 +52,25 @@ export const Header: React.FC<HeaderProps> = ({
           <Link to="/" className="inline-block shrink-0 transition-transform hover:scale-105 active:scale-95">
             {isTransparent ? (
               <div className="relative">
-                <SignIcon className="w-[68px] lg:w-[82px] transition-opacity group-hover/header:opacity-0" />
-                <SignGradientIcon className="absolute inset-0 w-[68px] lg:w-[82px] opacity-0 transition-opacity group-hover/header:opacity-100" />
+                <SignIcon className={cn('w-[68px] transition-opacity group-hover/header:opacity-0', logoLargeClass)} />
+                <SignGradientIcon
+                  className={cn(
+                    'absolute inset-0 w-[68px] opacity-0 transition-opacity group-hover/header:opacity-100',
+                    logoLargeClass
+                  )}
+                />
               </div>
             ) : isDark ? (
-              <SignIcon className="w-[68px] lg:w-[82px]" />
+              <SignIcon className={cn('w-[68px]', logoLargeClass)} />
             ) : (
-              <SignGradientIcon className="w-[68px] lg:w-[82px]" />
+              <SignGradientIcon className={cn('w-[68px]', logoLargeClass)} />
             )}
           </Link>
 
           {!actionSlot && <div className="flex-1" />}
 
           {/* PC Nav */}
-          <nav className="hidden items-center lg:flex">
+          <nav className={cn('hidden items-center', desktopFlexClass)}>
             {effectiveNavigationMenu.map((item, index) => (
               <NavDropdownItem
                 key={item.label}
@@ -96,7 +106,7 @@ export const Header: React.FC<HeaderProps> = ({
 
             <button
               onClick={() => setIsMobileMenuOpen(true)}
-              className={cn('p-2 lg:hidden', isDark || isTransparent ? 'text-white' : 'text-slate-900')}
+              className={cn('p-2', desktopHiddenClass, isDark || isTransparent ? 'text-white' : 'text-slate-900')}
             >
               <IconMenu2 className="size-6" />
             </button>

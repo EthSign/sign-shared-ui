@@ -55,14 +55,11 @@ const ProductCard: React.FC<{
 export function createDefaultNavigationMenu(): NavItem[] {
   return [
   {
-    label: 'Product',
+    label: 'Sovereign Infrastructure',
     mobileItems: [
       { label: 'Programmable Money: CBDC & Stablecoins', href: 'https://sign.global/use-cases/programmable-money' },
       { label: 'Digital ID System: Verifiable Credentials', href: 'https://sign.global/use-cases/digital-id-system' },
-      { label: 'Sovereign Capital Markets: RWA', href: 'https://sign.global/use-cases/rwa' },
-      { label: 'TokenTable', href: 'https://sign.global/tokentable' },
-      { label: 'EthSign', href: 'https://sign.global/ethsign' },
-      { label: 'Sign Protocol', href: 'https://app.sign.global' }
+      { label: 'Sovereign Capital Markets: RWA', href: 'https://sign.global/use-cases/rwa' }
     ],
     children: (isDark, resolveHref) => (
       <div className="grid w-full grid-cols-3">
@@ -86,30 +83,6 @@ export function createDefaultNavigationMenu(): NavItem[] {
           href={resolveHref('https://sign.global/use-cases/rwa')}
           img="https://public-cdn.sign.global/Attestation-Frontend/global/v3/images/nav-image-product-capital_260108065402.webp"
         />
-        <div
-          className={cn('col-span-3 v-dashed-t grid grid-cols-3', isDark ? 'border-neutral-700' : 'border-slate-300')}
-        >
-          <ProductCard
-            isDarkTheme={isDark}
-            title="TokenTable"
-            href={resolveHref('https://sign.global/tokentable')}
-            img="https://public-cdn.sign.global/Attestation-Frontend/global/v3/images/nav-image-product-tokentable_260108065401.webp"
-            showRightBorder
-          />
-          <ProductCard
-            isDarkTheme={isDark}
-            title="EthSign"
-            href={resolveHref('https://sign.global/ethsign')}
-            img="https://public-cdn.sign.global/Attestation-Frontend/global/v3/images/nav-image-product-ethsign_260108065402.webp"
-            showRightBorder
-          />
-          <ProductCard
-            isDarkTheme={isDark}
-            title="Sign Protocol"
-            href={resolveHref('https://app.sign.global')}
-            img="https://public-cdn.sign.global/Attestation-Frontend/global/v3/images/nav-image-product-sign-protocol_260108065403.webp"
-          />
-        </div>
       </div>
     )
   },
