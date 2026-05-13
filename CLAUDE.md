@@ -40,9 +40,10 @@ sign-shared-ui/
 | Project | Path | siteOrigin | Branch |
 |---------|------|------------|--------|
 | **Attestation-Frontend** (官网) | `/Users/lsbbd/Developer/EthSign/Attestation-Frontend` | `https://sign.global` | `extract-page-frame` |
+| **Sign-Bridge-Frontend** | `/Users/lsbbd/Developer/EthSign/Sign-Bridge-Frontend` | `https://bridge.sign.global` | `migrate-images` |
 | **Sign-Staking-FrontEnd** | `/Users/lsbbd/Developer/EthSign/Sign-Staking-FrontEnd` | `https://stake.sign.global` | worktree: `.claude/worktrees/sign-app-clan` |
 
-Both projects have `pnpm sync:shared` to pull updates from this registry (requires `pnpm registry:serve` running).
+All three projects have `pnpm sync:shared` to pull updates from this registry (requires `pnpm registry:serve` running).
 
 ## Key Architecture Decisions
 
