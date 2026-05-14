@@ -9,7 +9,7 @@ import { SmartLink, useSignSharedUI } from '../shared-ui-provider';
 import { createDefaultNavigationMenu } from './header-defaults';
 import { MobileNavbar } from './header-mobile-navbar';
 import { NavDropdownItem } from './header-nav-dropdown';
-import type { HeaderProps } from './header-types';
+import { desktopBreakpointClasses, type DesktopBreakpoint, type HeaderProps } from './header-types';
 
 export const Header: React.FC<HeaderProps> = ({
   className,
@@ -30,9 +30,8 @@ export const Header: React.FC<HeaderProps> = ({
   const isDark = effectiveVariant === 'dark';
 
   // 有 actionSlot 时把桌面态断点抬到 xl（≥1280px），避免 lg-xl 区间挤压
-  const desktopFlexClass = actionSlot ? 'xl:flex' : 'lg:flex';
-  const desktopHiddenClass = actionSlot ? 'xl:hidden' : 'lg:hidden';
-  const logoLargeClass = actionSlot ? 'xl:w-[82px]' : 'lg:w-[82px]';
+  const desktopBreakpoint: DesktopBreakpoint = actionSlot ? 'xl' : 'lg';
+  const desktop = desktopBreakpointClasses[desktopBreakpoint];
 
   return (
     <>
@@ -52,25 +51,25 @@ export const Header: React.FC<HeaderProps> = ({
           <Link to="/" className="inline-block shrink-0 transition-transform hover:scale-105 active:scale-95">
             {isTransparent ? (
               <div className="relative">
-                <SignIcon className={cn('w-[68px] transition-opacity group-hover/header:opacity-0', logoLargeClass)} />
+                <SignIcon className={cn('w-[68px] transition-opacity group-hover/header:opacity-0', desktop.logoW)} />
                 <SignGradientIcon
                   className={cn(
                     'absolute inset-0 w-[68px] opacity-0 transition-opacity group-hover/header:opacity-100',
-                    logoLargeClass
+                    desktop.logoW
                   )}
                 />
               </div>
             ) : isDark ? (
-              <SignIcon className={cn('w-[68px]', logoLargeClass)} />
+              <SignIcon className={cn('w-[68px]', desktop.logoW)} />
             ) : (
-              <SignGradientIcon className={cn('w-[68px]', logoLargeClass)} />
+              <SignGradientIcon className={cn('w-[68px]', desktop.logoW)} />
             )}
           </Link>
 
           {!actionSlot && <div className="flex-1" />}
 
           {/* PC Nav */}
-          <nav className={cn('hidden items-center', desktopFlexClass)}>
+          <nav className={cn('hidden items-center', desktop.flex)}>
             {effectiveNavigationMenu.map((item, index) => (
               <NavDropdownItem
                 key={item.label}
@@ -106,7 +105,7 @@ export const Header: React.FC<HeaderProps> = ({
 
             <button
               onClick={() => setIsMobileMenuOpen(true)}
-              className={cn('p-2', desktopHiddenClass, isDark || isTransparent ? 'text-white' : 'text-slate-900')}
+              className={cn('p-2', desktop.hidden, isDark || isTransparent ? 'text-white' : 'text-slate-900')}
             >
               <IconMenu2 className="size-6" />
             </button>
@@ -120,6 +119,7 @@ export const Header: React.FC<HeaderProps> = ({
         isDark={isDark}
         navigationMenu={effectiveNavigationMenu}
         resolveHref={resolveHref}
+        desktopBreakpoint={desktopBreakpoint}
       />
     </>
   );

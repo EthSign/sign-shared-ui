@@ -26,3 +26,10 @@ export interface HeaderProps {
   actionSlot?: React.ReactNode;
   navigationMenu?: NavItem[];
 }
+
+export type DesktopBreakpoint = 'lg' | 'xl';
+
+export const desktopBreakpointClasses = {
+  lg: { flex: 'lg:flex', hidden: 'lg:hidden', logoW: 'lg:w-[82px]' },
+  xl: { flex: 'xl:flex', hidden: 'xl:hidden', logoW: 'xl:w-[82px]' }
+} as const satisfies Record<DesktopBreakpoint, Record<string, string>>;

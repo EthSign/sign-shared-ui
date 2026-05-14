@@ -4,7 +4,7 @@ import { cn } from '../cn';
 import { Container } from '../container';
 import { SignGradientIcon, SignIcon } from '../icons';
 import { SmartLink } from '../shared-ui-provider';
-import type { NavItem } from './header-types';
+import { desktopBreakpointClasses, type DesktopBreakpoint, type NavItem } from './header-types';
 
 /** 移动端二级列表：支持带 subItems 的项展开三级 */
 const MobileSubItemList: React.FC<{
@@ -101,7 +101,8 @@ export const MobileNavbar: React.FC<{
   isDark: boolean;
   navigationMenu: NavItem[];
   resolveHref: (href: string) => string;
-}> = ({ isOpen, onClose, isDark, navigationMenu, resolveHref }) => {
+  desktopBreakpoint?: DesktopBreakpoint;
+}> = ({ isOpen, onClose, isDark, navigationMenu, resolveHref, desktopBreakpoint = 'lg' }) => {
   const [activeTab, setActiveTab] = useState<NavItem | null>(null);
   const [isChanging, setIsChanging] = useState(false);
 
@@ -134,7 +135,8 @@ export const MobileNavbar: React.FC<{
   return (
     <div
       className={cn(
-        'fixed inset-0 z-[100] flex flex-col transition-all duration-500 ease-in-out lg:hidden',
+        'fixed inset-0 z-[100] flex flex-col transition-all duration-500 ease-in-out',
+        desktopBreakpointClasses[desktopBreakpoint].hidden,
         isOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none',
         isDark ? 'bg-neutral-950 text-white' : 'bg-white text-slate-900'
       )}
